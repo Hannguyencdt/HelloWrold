@@ -21,6 +21,16 @@ import devpro.vn.hellowrold.fragrmet.TopMonthFragrmet;
 public class MainActivity  extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private FrameLayout frameLayout;
     private BottomNavigationView bottomNavigation;
+    //    + Bước 1: Import thư viện
+//    + Bước 2: Phân tích link api từ file json trả về thành các đối tượng model tương ứng
+//    + Bước 3: Cấu hình các class để sử dụng Retrofit
+//    + Bước 4: Gọi thư viện ra sử dụng và lấy dữ liệu về
+//    + Bước 5: Chuyển đổi dữ liệu trả về từ dạng String sang dạng Object Modelđê
+
+//    + Bước 6: Hiển thị dữ liệu lên trên RecycleView
+
+
+    //  JSON Formatter  https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa
 
 
     @Override
