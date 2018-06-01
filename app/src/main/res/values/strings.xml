@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">BaiTapTongHop</string>
+    <string name="home">Home</string>
+    <string name="discusion">Discusion</string>
+    <string name="revenue">Revenue</string>
+    <string name="top_month">Top Month</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">LogIn</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="unica_teacher">Unica Teacher</string>
+
+    <string name="top_of_month">Top of Month</string>
+    <string name="discussion">Discussion</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="_200_000_000vnd">200.000.000VND</string>
+    <string name="order_detail">Order Detail</string>
+    <string name="revenue_detail">Revenue Detail</string>
+
+</resources>
