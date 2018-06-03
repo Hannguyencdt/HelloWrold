@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#c4c4c4">
+
     <TextView
         android:id="@+id/tvTop"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="@string/unica_teacher"
-        android:gravity="center"
         android:background="@color/colorPrimary"
-        />
+        android:gravity="center"
+        android:text="@string/unica_teacher"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -40,10 +40,10 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvName"
+        android:layout_margin="16dp"
         android:background="@drawable/bore"
         android:orientation="vertical">
 
@@ -59,7 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp">
 
-                <TextView
+                <Button
+                    android:id="@+id/bntCourses"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="25dp"
@@ -67,9 +68,11 @@
                     android:gravity="right"
                     android:text="COURSES :"
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:background="#00ffffff"/>
 
                 <TextView
+                    android:id="@+id/tvcourse"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="25dp"
@@ -111,6 +114,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tvStudentNumber"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="25dp"
@@ -152,6 +156,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tvRevenue"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="25dp"
@@ -192,8 +197,6 @@
                     android:textSize="16sp" />
 
             </LinearLayout>
-
-
 
 
         </LinearLayout>
