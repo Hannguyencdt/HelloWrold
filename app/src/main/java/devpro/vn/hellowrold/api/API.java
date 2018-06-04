@@ -14,6 +14,10 @@ public interface API {
     Call<ResponseBody> getData();
     @GET("/app/api/login.json")
     Call<ResponseBody> getHomeData();
+    @GET("app/api/revenue.json")
+    Call<ResponseBody> getRevenueData();
+    @GET("app/api/discussion.json")
+    Call<ResponseBody> getDiscussionData();
 
     @POST("/app/api/data.json")
     Call<ResponseBody> getLogin(Header header, RequestBody requestBody);

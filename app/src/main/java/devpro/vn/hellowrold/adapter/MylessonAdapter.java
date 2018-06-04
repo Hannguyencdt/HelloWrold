@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import devpro.vn.hellowrold.R;
+import devpro.vn.hellowrold.model.DetailModel;
 import devpro.vn.hellowrold.model.MyLessonModel;
 
 /**

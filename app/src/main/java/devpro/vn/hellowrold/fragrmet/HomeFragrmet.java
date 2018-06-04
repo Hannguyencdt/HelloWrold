@@ -42,7 +42,6 @@ public class HomeFragrmet extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         inItView(view);
         getHomeData();
@@ -54,8 +53,6 @@ public class HomeFragrmet extends Fragment {
                 startActivity(intent);
             }
         });
-
-
         return view;
 
     }
@@ -94,7 +91,6 @@ public class HomeFragrmet extends Fragment {
                         tvCourse.setText(String.valueOf(homeModel.getCourse()));
                         tvStudentNumber.setText(String.valueOf(homeModel.getStudentNumber()));
                         tvRevenue.setText(String.valueOf(homeModel.getRevenue()));
-
 
                         Log.d("HoangTV", "data" + data);
 
