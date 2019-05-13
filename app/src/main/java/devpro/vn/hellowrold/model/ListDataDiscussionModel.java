@@ -10,6 +10,14 @@ import java.util.ArrayList;
  */
 
 public class ListDataDiscussionModel {
+
+
+
+    //
+    @SerializedName("discussion")
+    @Expose
+    private ArrayList<DiscussionModel> discussionModels = new ArrayList<>();
+
     public ArrayList<DiscussionModel> getDiscussionModels() {
         return discussionModels;
     }
@@ -17,8 +25,4 @@ public class ListDataDiscussionModel {
     public void setDiscussionModels(ArrayList<DiscussionModel> discussionModels) {
         this.discussionModels = discussionModels;
     }
-
-    @SerializedName("discussion")
-    @Expose
-    private ArrayList<DiscussionModel> discussionModels = new ArrayList<>();
 }

@@ -18,6 +18,8 @@ public interface API {
     Call<ResponseBody> getRevenueData();
     @GET("app/api/discussion.json")
     Call<ResponseBody> getDiscussionData();
+    @GET("app/api/topMonth04.json")
+    Call<ResponseBody> getTopMonthData();
 
     @POST("/app/api/data.json")
     Call<ResponseBody> getLogin(Header header, RequestBody requestBody);

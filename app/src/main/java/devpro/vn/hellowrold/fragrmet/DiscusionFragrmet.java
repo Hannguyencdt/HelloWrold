@@ -16,11 +16,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import devpro.vn.hellowrold.R;
+import devpro.vn.hellowrold.activity.CoursesActivity;
 import devpro.vn.hellowrold.adapter.DiscusionAdapter;
+import devpro.vn.hellowrold.adapter.MylessonAdapter;
 import devpro.vn.hellowrold.api.RestManager;
+import devpro.vn.hellowrold.config.Network;
+import devpro.vn.hellowrold.data.MyDatabaseHelper;
 import devpro.vn.hellowrold.model.DiscussionModel;
 import devpro.vn.hellowrold.model.HomeModel;
 import devpro.vn.hellowrold.model.ListDataDiscussionModel;
+import devpro.vn.hellowrold.model.ListDataMyLessonModel;
+import devpro.vn.hellowrold.model.MyLessonModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,17 +46,22 @@ public class DiscusionFragrmet extends Fragment {
         }
         return discusionFragrmet;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_discusion, container, false);
         rcDiscussion = view.findViewById(R.id.rcDiscussion);
-        this.discussionModels = new ArrayList<>();
-        this.discusionAdapter = new DiscusionAdapter(getContext(), discussionModels);
-        this.rcDiscussion.setHasFixedSize(true);
-        this.rcDiscussion.setLayoutManager(new LinearLayoutManager(getContext()));
-        this.rcDiscussion.setAdapter(discusionAdapter);
+        discussionModels = new ArrayList<>();
         getDiscussionData();
+
+
+//        listDiscussion = new ArrayList<Discussion>();
+//        adapter = new DiscussionAdapter(getContext(), listDiscussion);
+//        adapter.setCallBack(this);
+//        rcDiscussion.setLayoutManager(new LinearLayoutManager(getContext()));
+//        rcDiscussion.setAdapter(adapter);
+
         return view;
     }
 
@@ -58,41 +69,65 @@ public class DiscusionFragrmet extends Fragment {
     private RecyclerView rcDiscussion;
     private DiscusionAdapter discusionAdapter;
     private ArrayList<DiscussionModel> discussionModels;
-    private DiscusionAdapter discussionModel;
+    private MyDatabaseHelper db;
 
 
     public void getDiscussionData() {
-
         gson = new Gson();
-        Call<ResponseBody> call = RestManager.getApi().getDiscussionData();
-        call.enqueue(new Callback<ResponseBody>() {
+        if (Network.isNetworkAvailable(getContext())) {
+            Call<ResponseBody> call = RestManager.getApi().getDiscussionData();
+            call.enqueue(new Callback<ResponseBody>() {
 
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    Log.d("HoangTV", "isSuccessful()");
-                    try {
-                        String data = response.body().string();
-                     ListDataDiscussionModel listDataDiscussionModel = gson.fromJson(data, ListDataDiscussionModel.class);
-                     discussionModels = listDataDiscussionModel.getDiscussionModels();
-                     discusionAdapter.addListChapter(discussionModels);
-                        Log.d("HoangTV", "data" + data);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("HoangTV", "isSuccessful()");
+                        try {
+                            String data = response.body().string();
+
+                            ListDataDiscussionModel listDataDiscussionModel = gson.fromJson(data, ListDataDiscussionModel.class);
+                            discussionModels = listDataDiscussionModel.getDiscussionModels();
+//                            discusionAdapter.addListChapter(discussionModels);
+                            discusionAdapter = new DiscusionAdapter(getContext(), discussionModels);
+                            rcDiscussion.setHasFixedSize(true);
+                            rcDiscussion.setLayoutManager(new LinearLayoutManager(getContext()));
+                            rcDiscussion.setAdapter(discusionAdapter);
+
+                            //
+                            db = new MyDatabaseHelper(getContext());
+                            db.deleteALLTable();
+                            for (DiscussionModel model : discussionModels) {
+                                db.addDiscussion(model);
+
+                            }
+
+
+                            Log.d("HoangTV", "data" + data);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.d("HoangTV", "false()");
                     }
-                } else {
-                    Log.d("HoangTV", "false()");
+
                 }
 
-            }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d("HoangTV", "onFailure()");
+                }
+            });
+        } else {
+            MyDatabaseHelper db = new MyDatabaseHelper(getContext());
+            discussionModels = db.getAllDiscussion();
+         //   discusionAdapter.addListChapter(discussionModels);
+            discusionAdapter = new DiscusionAdapter(getContext(), discussionModels);
+            rcDiscussion.setHasFixedSize(true);
+            rcDiscussion.setLayoutManager(new LinearLayoutManager(getContext()));
+            rcDiscussion.setAdapter(discusionAdapter);
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("HoangTV", "onFailure()");
-            }
-        });
+        }
     }
-
 }
 
 

@@ -93,8 +93,7 @@ public class ReveneuFragrmet extends Fragment {
                     Log.d("HoangTV", "isSuccessful()");
                     try {
                         String data = response.body().string();
-
-                       reveneuModel = gson.fromJson(data,ReveneuModel.class );
+                        reveneuModel = gson.fromJson(data,ReveneuModel.class );
                         dataReveneu = data;
                         tvToday.setText(String.valueOf(reveneuModel.getToday()));
                         tvYesterday.setText(String.valueOf(reveneuModel.getYesterday()));
@@ -109,7 +108,6 @@ public class ReveneuFragrmet extends Fragment {
                     Log.d("HoangTV", "false()");
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("HoangTV", "onFailure()");

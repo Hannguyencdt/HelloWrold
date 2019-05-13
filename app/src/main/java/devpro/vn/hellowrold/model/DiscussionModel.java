@@ -8,15 +8,15 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class DiscussionModel {
-//
+    //
 //"id": 1,
 //            "name": "Nguyễn Thị Ngọc",
 //            "message": "Giáo viên Androoid đẹp trai quá .",
 //            "time": "03:00",
 //            "dateTime": "01/06",
 //            "image": "https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png"
-@SerializedName("id")
-@Expose
+    @SerializedName("id")
+    @Expose
     private int id;
     @SerializedName("name")
     @Expose

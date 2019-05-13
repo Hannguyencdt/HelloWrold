@@ -53,6 +53,7 @@ public class DetailAdapter  extends RecyclerView.Adapter<DetailAdapter.ViewHolde
         viewHolder.tvTrangThai.setText(String.valueOf(model.getTrangThai()));
         viewHolder.tvDoanhThu.setText(String.valueOf(model.getDoanhThu()));
         viewHolder.tvThuNhap.setText(String.valueOf(model.getThuNhap()));
+        viewHolder.tvSoDu.setText(String.valueOf(model.getSoDu()));
         viewHolder.tvDateTime.setText(String.valueOf(model.getDateTime()));
 
 
@@ -81,6 +82,7 @@ public class DetailAdapter  extends RecyclerView.Adapter<DetailAdapter.ViewHolde
         TextView tvMaCoupon;
         TextView tvTrangThai;
         TextView tvDoanhThu;
+        TextView tvSoDu;
         TextView tvThuNhap;
         TextView tvDateTime;
 
@@ -96,6 +98,7 @@ public class DetailAdapter  extends RecyclerView.Adapter<DetailAdapter.ViewHolde
             tvDoanhThu = itemView.findViewById(R.id.tvDoanhThu);
             tvThuNhap = itemView.findViewById(R.id.tvThuNhap);
             tvDateTime = itemView.findViewById(R.id.tvDateTime);
+            tvSoDu = itemView.findViewById(R.id.tvSoDu);
         }
     }
 }

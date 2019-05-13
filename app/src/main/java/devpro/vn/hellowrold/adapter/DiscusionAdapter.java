@@ -50,7 +50,8 @@ public void addListChapter(ArrayList<DiscussionModel> chapterModels) {
 @Override
 public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         DiscussionModel model = discussionModels.get(position);
-        Picasso.get().load(model.getImage()).into(viewHolder.imgImage);
+        Picasso.get().load(model.getImage()).into(viewHolder.imgImageV);
+
         viewHolder.tvName.setText(String.valueOf(model.getName()));
         viewHolder.tvMessage.setText(String.valueOf(model.getMessage()));
         viewHolder.tvTime.setText(String.valueOf(model.getTime()));
@@ -65,7 +66,7 @@ public int getItemCount() {
 
 class ViewHolder extends RecyclerView.ViewHolder {
 
-    ImageView imgImage;
+    ImageView imgImageV;
     TextView tvName;
     TextView tvMessage;
     TextView tvTime;
@@ -75,11 +76,11 @@ class ViewHolder extends RecyclerView.ViewHolder {
     public ViewHolder(View itemView) {
         super(itemView);
 
-        imgImage = itemView.findViewById(R.id.imgImage);
+        imgImageV = itemView.findViewById(R.id.imgImageV);
         tvName = itemView.findViewById(R.id.tvName);
         tvMessage = itemView.findViewById(R.id.tvMessage);
-        tvTime = itemView.findViewById(R.id.tvTime);
-        tvDateTime = itemView.findViewById(R.id.tvDateTime);
+       tvTime = itemView.findViewById(R.id.tvTimev);
+     tvDateTime = itemView.findViewById(R.id.tvDateTime);
 
     }
 }

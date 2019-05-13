@@ -13,11 +13,15 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import devpro.vn.hellowrold.R;
 import devpro.vn.hellowrold.activity.CoursesActivity;
 import devpro.vn.hellowrold.api.RestManager;
+import devpro.vn.hellowrold.config.Network;
+import devpro.vn.hellowrold.data.MyDatabaseHelper;
 import devpro.vn.hellowrold.model.HomeModel;
+import devpro.vn.hellowrold.model.MyLessonModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -71,44 +75,66 @@ public class HomeFragrmet extends Fragment {
     private TextView tvRevenue;
     private HomeModel homeModel;
     private Button bntCourses;
+    private MyDatabaseHelper db;
 
 
     public void getHomeData() {
 
         gson = new Gson();
-        Call<ResponseBody> call = RestManager.getApi().getHomeData();
-        call.enqueue(new Callback<ResponseBody>() {
 
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    Log.d("HoangTV", "isSuccessful()");
-                    try {
+        if(Network.isNetworkAvailable(getContext())){
+            // Trường hợp có mạng
 
-                        String data = response.body().string();
-                        homeModel = gson.fromJson(data, HomeModel.class);
-                        dataMyLesson = data;
-                        tvCourse.setText(String.valueOf(homeModel.getCourse()));
-                        tvStudentNumber.setText(String.valueOf(homeModel.getStudentNumber()));
-                        tvRevenue.setText(String.valueOf(homeModel.getRevenue()));
+            Call<ResponseBody> call = RestManager.getApi().getHomeData();
+            call.enqueue(new Callback<ResponseBody>() {
 
-                        Log.d("HoangTV", "data" + data);
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("HoangTV", "isSuccessful()");
+                        try {
+
+                            String data = response.body().string();
 
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                            homeModel = gson.fromJson(data, HomeModel.class);
+
+                            // ADD data vào sqlite
+
+                            for (MyLessonModel model: homeModel.getMyLesson()) {
+                                db = new MyDatabaseHelper(getContext());
+                               db.deleteALLTable();
+                                db.addMyLesson(model);
+
+                            }
+
+                            dataMyLesson = data;
+                            tvCourse.setText(String.valueOf(homeModel.getCourse()));
+                            tvStudentNumber.setText(String.valueOf(homeModel.getStudentNumber()));
+                            tvRevenue.setText(String.valueOf(homeModel.getRevenue()));
+
+                            Log.d("HoangTV", "data" + data);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.d("HoangTV", "false()");
                     }
-                } else {
-                    Log.d("HoangTV", "false()");
+
                 }
 
-            }
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d("HoangTV", "onFailure()");
+                }
+            });
+        }
+        else {
+            // Trường hợp K có mạng dùng Sqlite
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.d("HoangTV", "onFailure()");
-            }
-        });
+        }
+
     }
 }
 

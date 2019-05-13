@@ -64,7 +64,7 @@ public class MyLessonModel {
         this.image = image;
     }
 
-    public MyLessonModel(int id, String title, int rate, int price, String image) {
+    public MyLessonModel() {
         this.id = id;
         this.title = title;
         this.rate = rate;

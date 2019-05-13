@@ -13,6 +13,8 @@ import android.widget.FrameLayout;
 
 import devpro.vn.hellowrold.R;
 import devpro.vn.hellowrold.config.BottomNavigationViewHelper;
+import devpro.vn.hellowrold.config.Constants;
+import devpro.vn.hellowrold.config.SharedPreferencesUtils;
 import devpro.vn.hellowrold.fragrmet.DiscusionFragrmet;
 import devpro.vn.hellowrold.fragrmet.HomeFragrmet;
 import devpro.vn.hellowrold.fragrmet.ReveneuFragrmet;
@@ -37,6 +39,9 @@ public class MainActivity  extends AppCompatActivity implements BottomNavigation
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferencesUtils.setBoolean(MainActivity.this,
+                Constants.KEY_CHECK_LOGIN, true);
+
         bottomNavigation = findViewById(R.id.bottomNavigation);
         BottomNavigationViewHelper.removeShiftMode(bottomNavigation);
         itInView();

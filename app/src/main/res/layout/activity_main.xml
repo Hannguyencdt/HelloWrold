@@ -10,6 +10,14 @@
         android:layout_above="@+id/bottomNavigation">
 
     </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rlContenData"
+        >
+
+
+    </RelativeLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:background="#919191"

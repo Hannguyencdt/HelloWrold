@@ -22,9 +22,18 @@ public class HomeModel {
     @SerializedName("revenue")
     @Expose
     private String revenue;
+
+    public ArrayList<MyLessonModel> getMyLesson() {
+        return myLesson;
+    }
+
+    public void setMyLesson(ArrayList<MyLessonModel> myLesson) {
+        this.myLesson = myLesson;
+    }
+
     @SerializedName("myLesson")
     @Expose
-    private ArrayList myLesson;
+    private ArrayList<MyLessonModel>  myLesson ;
 
 
     public int getId() {
@@ -59,13 +68,6 @@ public class HomeModel {
         this.revenue = revenue;
     }
 
-    public ArrayList getMyLesson() {
-        return myLesson;
-    }
-
-    public void setMyLesson(ArrayList myLesson) {
-        this.myLesson = myLesson;
-    }
 
     public HomeModel(int id, int course, int studentNumber, String revenue, ArrayList myLesson) {
         this.id = id;
